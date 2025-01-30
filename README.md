@@ -41,5 +41,13 @@ Este frontend en Angular consume el backend basado en microservicios.
 ## 📥 Instalación y Configuración
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/book-tracker-frontend.git
+   git clone https://github.com/agutierrezldev/book-tracker-frontend.git
    cd book-tracker-frontend
+
+2. Instalar dependencias:
+   ```bash
+   npm install
+
+2. Levantar el proyecto:
+   ```bash
+   ng serve
