@@ -1,14 +1,14 @@
 import { Routes } from '@angular/router';
-import { BookListComponent } from './book-list/book-list.component';
-import { BookCreateComponent } from './book-create/book-create.component';
-import { AuthorListComponent } from './author-list/author-list.component';
-import { AuthorCreateComponent } from './author-create/author-create.component';
-import { LoanListComponent } from './loan-list/loan-list.component';
-import { LoanCreateComponent } from './loan-create/loan-create.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AuthorEditComponent } from './author-edit/author-edit.component';
-import { BookEditComponent } from './book-edit/book-edit.component';
-import { LoanEditComponent } from './loan-edit/loan-edit.component';
+import { BookListComponent } from './features/books/book-list/book-list.component';
+import { BookCreateComponent } from './features/books/book-create/book-create.component';
+import { BookEditComponent } from './features/books/book-edit/book-edit.component';
+import { AuthorListComponent } from './features/authors/author-list/author-list.component';
+import { AuthorCreateComponent } from './features/authors/author-create/author-create.component';
+import { AuthorEditComponent } from './features/authors/author-edit/author-edit.component';
+import { LoanListComponent } from './features/loans/loan-list/loan-list.component';
+import { LoanCreateComponent } from './features/loans/loan-create/loan-create.component';
+import { LoanEditComponent } from './features/loans/loan-edit/loan-edit.component';
+import { DashboardComponent } from './features/dashboard/dashboard/dashboard.component';
 
 export const routes: Routes = [
   { path: 'books', component: BookListComponent },
