@@ -1,0 +1,77 @@
+<!-- loan-create.component.html -->
+<div class="container mt-5">
+  <h2>Registrar Préstamo</h2>
+
+  <form [formGroup]="loanForm" (ngSubmit)="onSubmit()">
+    <div class="row mb-3">
+      <div class="col-md-12">
+        <div class="form-group mb-3">
+          <label for="bookId" class="form-label">
+            Libro
+            <span class="text-danger">(*)</span>
+          </label>
+          <select formControlName="bookId" id="bookId" class="form-control"
+            [ngClass]="{'is-invalid': bookId?.invalid && bookId?.touched}" required>
+            <option *ngFor="let book of books" [value]="book.id">{{ book.title }}</option>
+          </select>
+          <div *ngIf="bookId?.touched && bookId?.invalid" class="text-danger">
+            <small *ngIf="bookId?.hasError('required')">Debe seleccionar un Libro.</small>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="loanDate" class="form-label">
+            Fecha de Préstamo <span class="text-danger">(*)</span>
+          </label>
+          <input formControlName="loanDate" id="loanDate" class="form-control" type="date"
+            [ngClass]="{'is-invalid': loanDate?.invalid && loanDate?.touched}" required />
+          <div *ngIf="loanDate?.touched && loanDate?.invalid" class="text-danger">
+            <small *ngIf="loanDate?.hasError('required')">Fecha de Préstamo es requerida.</small>
+            <small *ngIf="loanDate?.hasError('invalidDate')">Fecha de Préstamo tiene el formato inválido.
+              Favor de
+              usar DD-MM-YYYY.</small>
+          </div>
+
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="returnDate" class="form-label">Fecha de Devolución</label>
+          <input formControlName="returnDate" id="returnDate" class="form-control" type="date"
+            [ngClass]="{'is-invalid': returnDate?.invalid && returnDate?.touched}" required />
+          <div *ngIf="returnDate?.touched && returnDate?.invalid" class="text-danger">
+            <small *ngIf="returnDate?.hasError('required')">Fecha de Devolución es requerida.</small>
+            <small *ngIf="returnDate?.hasError('invalidDate')">Fecha de Devolución tiene el formato inválido.
+              Favor de
+              usar DD-MM-YYYY.</small>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="available" class="form-label">
+            Estado <span class="text-danger">(*)</span>
+          </label>
+          <select formControlName="status" id="status" class="form-control"
+            [ngClass]="{'is-invalid': status?.invalid && status?.touched}" required>
+            <option value="" disabled>Seleccione el estado</option>
+            <option value="true">Disponible</option>
+            <option value="false">No disponible</option>
+          </select>
+          <div *ngIf="status?.touched && status?.invalid" class="text-danger">
+            <small *ngIf="status?.hasError('required')">Debe seleccionar un estado.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="mb-3">
+          <small class="text-danger">(*) Campos requeridos</small>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary" [disabled]="loanForm.invalid">Guardar</button>
+        </div>
+      </div>
+
+    </div>
+
+  </form>
+</div>

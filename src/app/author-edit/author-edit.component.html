@@ -1,0 +1,61 @@
+<div class="container mt-5">
+  <h2>Editar Autor</h2>
+
+  <form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
+    <div class="row mb-3">
+      <div class="col-md-12">
+        <div class="form-group mb-3">
+          <label for="name" class="form-label">
+            Nombre
+            <span class="text-danger">(*)</span>
+          </label>
+          <input formControlName="name" id="name" class="form-control" type="text"
+            [ngClass]="{'is-invalid': name?.invalid && name?.touched}" required />
+          <div *ngIf="name?.touched && name?.invalid" class="text-danger">
+            <small *ngIf="name?.hasError('required')">Nombre es requerido.</small>
+            <small *ngIf="name?.hasError('minlength')">Nombre debe de tener al menos 3 caracteres.</small>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="nationality" class="form-label">
+            Nacionalidad
+            <span class="text-danger">(*)</span>
+          </label>
+          <input formControlName="nationality" id="nationality" class="form-control" type="text"
+            [ngClass]="{'is-invalid': nationality?.invalid && nationality?.touched}"
+            required />
+          <div *ngIf="nationality?.touched && nationality?.invalid" class="text-danger">
+            <small *ngIf="nationality?.hasError('required')">Nacionalidad es requerida.</small>
+            <small *ngIf="nationality?.hasError('minlength')">Nacionalidad debe de tener al menos 3 caracteres.</small>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="birthDate" class="form-label">
+            Fecha de Nacimiento
+            <span class="text-danger">(*)</span>
+          </label>
+          <input formControlName="birthDate" id="birthDate" class="form-control" type="date"
+            [ngClass]="{'is-invalid': birthDate?.invalid && birthDate?.touched}"
+            required />
+          <div *ngIf="birthDate?.touched && birthDate?.invalid" class="text-danger">
+            <small *ngIf="birthDate?.hasError('required')">Fecha de Nacimiento es requerida.</small>
+            <small *ngIf="birthDate?.hasError('invalidDate')">Fecha de Nacimiento tiene el formato inválido. Favor de
+              usar DD-MM-YYYY.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="mb-3">
+          <small class="text-danger">(*) Campos requeridos</small>
+        </div>
+    
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary" [disabled]="authorForm.invalid">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,52 @@
+<div class="container mt-4">
+  <h2 class="mb-3">📊 Panel de Control</h2>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 mb-3" style="background-color: #D6EAF8;">
+        <div class="card-body text-center">
+          <h5 class="card-title">📚 Total Libros</h5>
+          <p class="card-text display-4">#{{ dashboard.totalBooks }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 mb-3" style="background-color: #D5F5E3;">
+        <div class="card-body text-center">
+          <h5 class="card-title">✍️ Total Autores</h5>
+          <p class="card-text display-4">#{{ dashboard.totalAuthors }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 mb-3" style="background-color: #FADBD8;">
+        <div class="card-body text-center">
+          <h5 class="card-title">📖 Total Préstamos</h5>
+          <p class="card-text display-4">#{{ dashboard.totalLoans }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 mb-3" style="background-color: #FCF3CF;">
+        <div class="card-body text-center">
+          <h5 class="card-title">✅ Préstamos Activos</h5>
+          <p class="card-text display-4">#{{ dashboard.activeLoans }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 mb-3" style="background-color: #EBDEF0;">
+        <div class="card-body text-center">
+          <h5 class="card-title">📅 Préstamos Finalizados</h5>
+          <p class="card-text display-4">#{{ dashboard.finishedLoans }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

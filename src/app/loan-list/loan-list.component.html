@@ -1,0 +1,67 @@
+<div class="container mt-5">
+
+  <h2>Listado de Préstamos</h2>
+
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-primary" (click)="create()">Crear Nuevo Préstamo</button>
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="bookFilter" class="form-label">Filtrar por libro:</label>
+    <select id="bookFilter" [(ngModel)]="selectedBookId" (change)="filterByBook()" class="form-control">
+      <option value="">Todos los libros</option>
+      <option *ngFor="let book of books" [value]="book.id">{{ book.title }}</option>
+    </select>
+  </div>
+
+
+  <div *ngIf="loans.length > 0">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Libro</th>
+          <th>Autor</th>
+          <th>Fecha de Préstamo</th>
+          <th>Fecha de Devolución</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let loan of loans">
+          <td>{{ loan.id }}</td>
+          <td>{{ loan.book.title }}</td>
+          <td>{{ loan.book.author?.name }}</td>
+          <td>{{ loan.loanDate | date:'dd/MM/yyyy' }}</td>
+          <td>{{ loan.returnDate  | date:'dd/MM/yyyy'}}</td>
+          <td>
+            <i *ngIf="loan.status" class="bi bi-check-circle text-success fs-4"></i>
+            <i *ngIf="!loan.status" class="bi bi-x-circle text-danger fs-4"></i>
+          </td>
+          <td>
+            <button class="btn btn-outline-success btn-sm me-2" (click)="edit(loan)">Editar</button>
+            <button class="btn btn-outline-danger btn-sm" (click)="confirm(loan)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <nav aria-label="Paginación">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 0">
+          <a class="page-link" (click)="changePage(currentPage - 1)" href="javascript:void(0)">Previous</a>
+        </li>
+        <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index">
+          <a class="page-link" (click)="changePage(i)" href="javascript:void(0)">{{ i + 1 }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+          <a class="page-link" (click)="changePage(currentPage + 1)" href="javascript:void(0)">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div *ngIf="loans.length === 0">No hay préstamos disponibles.</div>
+
+</div>

@@ -1,0 +1,86 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Editar Libro</h2>
+
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <div class="row mb-3">
+      <div class="col-md-12">
+        <div class="form-group mb-3">
+          <label for="title" class="form-label">
+            Título <span class="text-danger">(*)</span>
+          </label>
+          <input formControlName="title" id="title" class="form-control" type="text"
+            [ngClass]="{'is-invalid': title?.invalid && title?.touched}" required />
+          <div *ngIf="title?.touched && title?.invalid" class="text-danger">
+            <small *ngIf="title?.hasError('required')">Título es requerido.</small>
+            <small *ngIf="title?.hasError('minlength')">Debe tener al menos 3 caracteres.</small>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="author" class="form-label">
+            Autor <span class="text-danger">(*)</span>
+          </label>
+          <select formControlName="authorId" id="author" class="form-control"
+            [ngClass]="{'is-invalid': authorId?.invalid && authorId?.touched}" required>
+            <option value="" disabled>Seleccione un autor</option>
+            <option *ngFor="let author of authors" [value]="author.id">{{ author.name }}</option>
+          </select>
+          <div *ngIf="authorId?.touched && authorId?.invalid" class="text-danger">
+            <small *ngIf="authorId?.hasError('required')">Debe seleccionar un autor.</small>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="isbn" class="form-label">
+            ISBN <span class="text-danger">(*)</span>
+          </label>
+          <input formControlName="isbn" id="isbn" class="form-control" type="text"
+            [ngClass]="{'is-invalid': isbn?.invalid && isbn?.touched}" required />
+          <div *ngIf="isbn?.touched && isbn?.invalid" class="text-danger">
+            <small *ngIf="isbn?.hasError('required')">ISBN es requerido.</small>
+            <small *ngIf="isbn?.hasError('pattern')">Formato inválido.</small>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="publicationDate" class="form-label">
+            Fecha de Publicación <span class="text-danger">(*)</span>
+          </label>
+          <input formControlName="publicationDate" id="publicationDate" class="form-control" type="date"
+            [ngClass]="{'is-invalid': publicationDate?.invalid && publicationDate?.touched}" required />
+          <div *ngIf="publicationDate?.touched && publicationDate?.invalid" class="text-danger">
+            <small *ngIf="publicationDate?.hasError('required')">Fecha de Publicación es requerida.</small>
+            <small *ngIf="publicationDate?.hasError('invalidDate')">Fecha de Publicación tiene el formato inválido.
+              Favor de
+              usar DD-MM-YYYY.</small>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="available" class="form-label">
+            Estado <span class="text-danger">(*)</span>
+          </label>
+          <select formControlName="available" id="available" class="form-control"
+            [ngClass]="{'is-invalid': available?.invalid && available?.touched}" required>
+            <option value="" disabled>Seleccione el estado</option>
+            <option value="true">Disponible</option>
+            <option value="false">No disponible</option>
+          </select>
+          <div *ngIf="available?.touched && available?.invalid" class="text-danger">
+            <small *ngIf="available?.hasError('required')">Debe seleccionar un estado.</small>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-md-12">
+        <div class="mb-3">
+          <small class="text-danger">(*) Campos requeridos</small>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary" [disabled]="bookForm.invalid">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

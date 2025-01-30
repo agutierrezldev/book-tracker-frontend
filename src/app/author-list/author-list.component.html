@@ -1,0 +1,46 @@
+<div class="container mt-4">
+  <h2>Listado de Autores</h2>
+
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-primary" (click)="create()">Crear Nuevo Autor</button>
+  </div>
+
+  <!-- Tabla de autores -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Nacionalidad</th>
+        <th scope="col">Fecha de Nacimiento</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let author of authors; let i = index">
+        <th scope="row">{{ (page - 1) * size + i + 1 }}</th>
+        <td>{{ author.name }}</td>
+        <td>{{ author.nationality }}</td>
+        <td>{{ author.birthDate | date:'dd/MM/yyyy' }}</td>
+        <td>
+          <button class="btn btn-outline-success btn-sm me-2" (click)="edit(author)">Editar</button>
+          <button class="btn btn-outline-danger btn-sm" (click)="confirm(author)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <nav aria-label="Paginación">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="page === 1">
+        <a class="page-link" (click)="changePage(page - 1)">Anterior</a>
+      </li>
+      <li class="page-item" *ngFor="let p of [].constructor(totalPages); let i = index" [class.active]="page === i + 1">
+        <a class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="page === totalPages">
+        <a class="page-link" (click)="changePage(page + 1)">Siguiente</a>
+      </li>
+    </ul>
+  </nav>
+</div>
